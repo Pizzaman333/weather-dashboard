@@ -1,0 +1,102 @@
+.slider {
+  padding-top: 60px;
+  padding-bottom: 50px;
+
+  &__container {
+position: relative;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    align-self: start;
+  }
+
+  &__track {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+  }
+
+  &__card {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    background: #333;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  &__controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    z-index: 20;
+  }
+
+  &__arrow-btn {
+background: #FFB36C;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 50px;
+    height: 50px;
+
+    &:hover {
+background: #ff9a3b;
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+
+  &__loading {
+    text-align: center;
+    padding: 50px;
+    font-size: 1.2rem;
+    color: #666;
+  }
+
+  &__debug {
+    margin-top: 10px;
+    color: #888;
+  }
+}
