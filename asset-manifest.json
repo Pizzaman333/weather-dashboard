@@ -1,11 +1,18 @@
 {
   "files": {
-    "main.css": "/weather-dashboard/static/css/main.0847f6f0.css",
-    "main.js": "/weather-dashboard/static/js/main.51ea05d7.js",
+    "main.css": "/weather-dashboard/static/css/main.37a7dc46.css",
+    "main.js": "/weather-dashboard/static/js/main.aa094fef.js",
     "static/media/hero-bg-2x.webp": "/weather-dashboard/static/media/hero-bg-2x.d43fc22935f34573bea4.webp",
     "static/media/whatsapp.svg": "/weather-dashboard/static/media/whatsapp.65dd5480fea7f6f399c2.svg",
     "static/media/instagram.svg": "/weather-dashboard/static/media/instagram.02de1cccf334c7058d93.svg",
+    "static/media/sun.svg": "/weather-dashboard/static/media/sun.9b0c329b16dad719c86cbbba0baf1d8d.svg",
+    "static/media/thunderstorm.png": "/weather-dashboard/static/media/thunderstorm.796458a8d4fe5269217e.png",
     "static/media/hero-bg-1x.webp": "/weather-dashboard/static/media/hero-bg-1x.54eddce8d94a5c7d4eb8.webp",
+    "static/media/overcast.svg": "/weather-dashboard/static/media/overcast.dad384de943895005d52e94b1262e7e5.svg",
+    "static/media/cloudy.svg": "/weather-dashboard/static/media/cloudy.3ff52ee48f6c338c90d330e7452be0dc.svg",
+    "static/media/snow.png": "/weather-dashboard/static/media/snow.a1bab4977c6b746bbe1b.png",
+    "static/media/mist.png": "/weather-dashboard/static/media/mist.eb0069f3ae915a244af2.png",
+    "static/media/rain.png": "/weather-dashboard/static/media/rain.d098d5bd2d83618f9a7f.png",
     "static/media/facebook.svg": "/weather-dashboard/static/media/facebook.4cc87fe3158bdfa7086c.svg",
     "static/media/search.svg": "/weather-dashboard/static/media/search.d6b2210006084e689485933e55ccbb7f.svg",
     "static/media/pressure-2x.webp": "/weather-dashboard/static/media/pressure-2x.52735b440552c0e5b758.webp",
@@ -19,11 +26,12 @@
     "static/media/account.svg": "/weather-dashboard/static/media/account.91c0e7a685f4cdf65831b78754d7500e.svg",
     "static/media/spinner.svg": "/weather-dashboard/static/media/spinner.5d33b5ee865afccedf4bde8fc2b0569b.svg",
     "static/media/bin.svg": "/weather-dashboard/static/media/bin.e0744143dad1b73c6b38f4df7b61e05c.svg",
-    "main.0847f6f0.css.map": "/weather-dashboard/static/css/main.0847f6f0.css.map",
-    "main.51ea05d7.js.map": "/weather-dashboard/static/js/main.51ea05d7.js.map"
+    "static/media/arrow-down.svg": "/weather-dashboard/static/media/arrow-down.e3ae4c043b1317b8805f6f7e03e5a527.svg",
+    "main.37a7dc46.css.map": "/weather-dashboard/static/css/main.37a7dc46.css.map",
+    "main.aa094fef.js.map": "/weather-dashboard/static/js/main.aa094fef.js.map"
   },
   "entrypoints": [
-    "static/css/main.0847f6f0.css",
-    "static/js/main.51ea05d7.js"
+    "static/css/main.37a7dc46.css",
+    "static/js/main.aa094fef.js"
   ]
 }
