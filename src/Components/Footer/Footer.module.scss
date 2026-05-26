@@ -1,0 +1,59 @@
+.footer {
+    background: #FFB36C;
+    padding-top: 40px;
+    padding-bottom: 65px;
+
+  &__content {
+    display: flex;
+    gap: 103px;
+    align-items: center;
+  }
+
+  &__logo {
+    width: 90px;
+    height: 52px;
+  }
+
+  &__title {
+font-family: "Montserrat Alternates";
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+  }
+
+  &__address-text {
+    margin-top: 10px;
+font-family: "Montserrat Alternates";
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+  }
+
+  &__socials {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+  }
+
+  &__social-link {
+    display: block;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+
+    &:first-child {
+          background-image: url("../../Images/Socials/instagram.svg");
+    }
+
+    &:nth-child(2) {
+          background-image: url("../../Images/Socials/facebook.svg");
+    }
+
+    &:last-child {
+          background-image: url("../../Images/Socials/whatsapp.svg");
+
+    }
+  }
+}

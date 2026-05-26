@@ -1,0 +1,108 @@
+.hero {
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+  background-image: url("../../Images/Mobile/hero-bg-1x.webp");
+  background-size: cover;
+  background-position: center;
+
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    background-image: url("../../Images/Mobile/hero-bg-2x.webp");
+  }
+
+  @media screen and (min-width: 768px) {
+    background-image: url("../../Images/Tablet/hero-bg-1x.webp");
+
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      background-image: url("../../Images/Tablet/hero-bg-2x.webp");
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    background-image: url("../../Images/Desktop/hero-bg-1x.webp");
+
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      background-image: url("../../Images/Desktop/hero-bg-2x.webp");
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__title {
+    color: #fff;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  &__info {
+    display: flex;
+    gap: 52px;
+    align-self: flex-start;
+    margin-left: 190px;
+  }
+
+  &__text-block {
+    color: #fff;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    &--left {
+      text-align: right;
+      max-width: 350px;
+    }
+  }
+
+  &__separator {
+    background-color: #fff;
+    width: 3px;
+    height: 144px;
+  }
+
+  &__search {
+    position: relative;
+
+    &-input {
+      width: 625px;
+      height: 42px;
+      border-radius: 10px;
+      background: #d9d9d9;
+      outline: none;
+      border: none;
+      padding-left: 30px;
+
+      &::placeholder {
+        color: #878787;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+      }
+    }
+
+    &-btn {
+      width: 45px;
+      height: 44px;
+      border-radius: 0 10px 10px 0;
+      border-left: 2px solid #000;
+      background: #ffb36c;
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+    }
+
+    &-icon {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
