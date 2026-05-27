@@ -1,12 +1,38 @@
+// Variables
+$tablet: 768px;
+$desktop: 1200px;
+
 .footer {
-    background: #FFB36C;
+  background: #ffb36c;
+
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  @media screen and (min-width: $desktop) {
     padding-top: 40px;
     padding-bottom: 65px;
+  }
 
   &__content {
     display: flex;
-    gap: 103px;
+    flex-direction: column;
     align-items: center;
+    gap: 30px;
+    text-align: center;
+
+    @media screen and (min-width: $tablet) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      text-align: left;
+      gap: 40px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      justify-content: flex-start;
+      align-items: center;
+      gap: 103px;
+    }
   }
 
   &__logo {
@@ -14,27 +40,39 @@
     height: 52px;
   }
 
+  &__info-group {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__title {
-font-family: "Montserrat Alternates";
-font-size: 16px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
   }
 
   &__address-text {
     margin-top: 10px;
-font-family: "Montserrat Alternates";
-font-size: 12px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
   }
 
   &__socials {
     margin-top: 10px;
     display: flex;
     gap: 20px;
+
+    justify-content: center;
+
+    @media screen and (min-width: $tablet) {
+      justify-content: flex-start;
+      margin-top: 0;
+    }
   }
 
   &__social-link {
@@ -43,17 +81,25 @@ line-height: normal;
     height: 40px;
     cursor: pointer;
 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
     &:first-child {
-          background-image: url("../../Images/Socials/instagram.svg");
+      background-image: url("../../Images/Socials/instagram.svg");
     }
 
     &:nth-child(2) {
-          background-image: url("../../Images/Socials/facebook.svg");
+      background-image: url("../../Images/Socials/facebook.svg");
     }
 
     &:last-child {
-          background-image: url("../../Images/Socials/whatsapp.svg");
-
+      background-image: url("../../Images/Socials/whatsapp.svg");
     }
   }
 }

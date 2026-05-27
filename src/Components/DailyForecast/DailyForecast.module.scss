@@ -1,0 +1,114 @@
+$tablet: 768px;
+$desktop: 1200px;
+
+.daily-forecast {
+  padding: 18px 25px 35px 25px;
+  width: 243px;
+  border-radius: 20px;
+  background: #e8e8e8;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media screen and (min-width: $tablet) {
+    padding: 20px 35px 35px 35px;
+    width: 564px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding: 26px 78px 42px 76px;
+    width: 986px;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 20px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__item {
+    border-radius: 10px;
+    background: #d9d9d9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // padding-left: 50px;
+    // padding-right: 50px;
+    position: relative;
+
+    @media screen and (min-width: $tablet) {
+      padding-left: 15px;
+      padding-right: 15px;
+      width: 534px;
+      height: 40px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      padding-left: 50px;
+      padding-right: 50px;
+      width: 886px;
+      height: 47px;
+    }
+  }
+
+  &__date {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__dets {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    position: absolute;
+    top: 0;
+    left: 6px;
+
+    @media screen and (min-width: $tablet) {
+      left: 232px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      left: 436px;
+    }
+  }
+
+  &__img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+    }
+  }
+
+  &__temp {
+    color: #333;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__desc {
+    text-align: right;
+    font-size: 14px;
+    color: #666;
+    text-transform: capitalize;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

@@ -3,8 +3,8 @@ import axios from "axios";
 import styles from "./Slider.module.scss";
 import { Container } from "../Container/Container";
 
-  const API_KEY = process.env.REACT_APP_PIXABAY_API_KEY;
-const TERM = 'weather';
+const API_KEY = process.env.REACT_APP_PIXABAY_API_KEY;
+const TERM = "weather";
 
 const Slider = () => {
   const [images, setImages] = useState([]);
@@ -131,51 +131,54 @@ const Slider = () => {
 
   return (
     <div className={styles.slider}>
-        <Container>
-      <div className={styles.slider__container}>
-        <h1 className={styles["slider__title"]}>
-          Explore some beautiful images
-        </h1>
+      <Container>
+        <div className={styles.slider__container}>
+          <h1 className={styles["slider__title"]}>
+            Explore some beautiful images
+          </h1>
 
-        <div className={styles["slider__track"]}>
-          {images.map((img, index) => {
-            if (Math.abs(activeIndex - index) > 3) return null;
+          <div className={styles["slider__track"]}>
+            {images.map((img, index) => {
+              if (Math.abs(activeIndex - index) > 3) return null;
 
-            return (
-              <div
-                key={`${img.id}-${index}`}
-                className={styles["slider__card"]}
-                style={getStyle(index)}
-              >
-                <img src={img.webformatURL} alt={img.tags} />
-                <div className={styles["slider__caption"]}>
-                  <p>
-                    #{index} {img.tags.split(",")[0]}
-                  </p>
+              return (
+                <div
+                  key={`${img.id}-${index}`}
+                  className={styles["slider__card"]}
+                  style={getStyle(index)}
+                >
+                  <img src={img.webformatURL} alt={img.tags} />
+                  <div className={styles["slider__caption"]}>
+                    <p>
+                      #{index} {img.tags.split(",")[0]}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
 
-        <div className={styles["slider__controls"]}>
-          <button
-            onClick={handlePrev}
-            className={styles["slider__arrow-btn"]}
-            disabled={activeIndex === 0}
-          >
-             ❮
-          </button>
-          <button onClick={handleNext} className={styles["slider__arrow-btn"]}>
-            ❯
-          </button>
-        </div>
+          <div className={styles["slider__controls"]}>
+            <button
+              onClick={handlePrev}
+              className={styles["slider__arrow-btn"]}
+              disabled={activeIndex === 0}
+            >
+              ❮
+            </button>
+            <button
+              onClick={handleNext}
+              className={styles["slider__arrow-btn"]}
+            >
+              ❯
+            </button>
+          </div>
 
-        <div className={styles["slider__debug"]}>
-          Showing index {activeIndex} of {images.length} loaded
+          <div className={styles["slider__debug"]}>
+            Showing index {activeIndex} of {images.length} loaded
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
     </div>
   );
 };

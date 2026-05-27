@@ -5,6 +5,7 @@ import Hero from "./Components/Hero/Hero";
 import News from "./Components/News/News";
 import Slider from "./Components/Slider/Slider";
 import Footer from "./Components/Footer/Footer";
+// import DailyForecast from "./Components/DailyForecast/DailyForecast";
 // import WeatherDetails from "./Components/WeatherDetails/WeatherDetails";
 // import HourlyForecast from "./Components/HourlyForecast/HourlyForecast";
 
@@ -66,6 +67,18 @@ function App() {
 //   { time: "6 pm", temp: 25.5 },
 // ];
 
+// const dailyData = [
+//   { date: "Fri, Oct 13", type: "rain", high: 23, low: 14, description: "light rain" },
+//   { date: "Sat, Oct 14", type: "rain", high: 22, low: 10, description: "light rain" },
+//   { date: "Sun, Oct 15", type: "mist", high: 13, low: 6, description: "light rain" },
+//   { date: "Mon, Oct 16", type: "clouds", high: 12, low: 4, description: "few clouds" },
+//   { date: "Tue, Oct 17", type: "overcast", high: 12, low: 4, description: "overcast clouds" },
+//   { date: "Wed, Oct 18", type: "sun", high: 13, low: 3, description: "clear sky" },
+//   { date: "Thu, Oct 19", type: "thunder", high: 12, low: 5, description: "overcast clouds" },
+//   { date: "Fri, Oct 20", type: "snow", high: 9, low: 3, description: "scattered clouds" },
+// ];
+
+
 
   return (
     <div>
@@ -74,6 +87,7 @@ function App() {
       <WeatherDashboard cities={cities} onRemoveCity={handleRemoveCity} />
 {/* <WeatherDetails weatherData={detailedData} />
 <HourlyForecast data={forecastData} /> */}
+ {/* <DailyForecast forecast={dailyData} /> */}
       <News />
       <Slider />
       <Footer />

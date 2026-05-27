@@ -1,8 +1,8 @@
 .weather-card {
   padding: 15px 25px 21px 25px;
   border-radius: 20px;
-  background: #E8E8E8;
-  min-width: 250px; 
+  background: #e8e8e8;
+  min-width: 250px;
 
   &__header {
     display: flex;
@@ -18,11 +18,16 @@
     margin-top: 15px;
   }
 
+  &__forecast {
+    display: flex;
+    gap: 25px;
+  }
+
   &__forecast-btn {
     font-size: 10px;
     font-weight: 500;
     border-radius: 10px;
-    background: #FFB36C;
+    background: #ffb36c;
     width: 114px;
     height: 28px;
     display: block;
@@ -41,7 +46,7 @@
   &__img {
     width: 150px;
     height: 150px;
-    display: block; 
+    display: block;
     margin: 0 auto;
   }
 
@@ -53,7 +58,7 @@
 
   &__footer {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
     margin-top: 38px;
   }
@@ -94,7 +99,7 @@
     width: 99px;
     height: 28px;
     border-radius: 10px;
-    background: #FFB36C;
+    background: #ffb36c;
     cursor: pointer;
     font-size: 10px;
     font-weight: 500;

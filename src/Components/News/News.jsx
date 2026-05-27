@@ -72,13 +72,13 @@ const News = () => {
           ))}
         </div>
 
-          <button
-            onClick={handleSeeMore}
-            className={styles["news__button"]}
-            disabled={loading}
-          >
-            {loading ? "Loading..." : "See more"}
-          </button>
+        <button
+          onClick={handleSeeMore}
+          className={styles["news__button"]}
+          disabled={loading}
+        >
+          {loading ? "Loading..." : "See more"}
+        </button>
       </Container>
     </section>
   );

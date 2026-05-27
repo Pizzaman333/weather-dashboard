@@ -1,20 +1,20 @@
-import {useState} from "react";
+import { useState } from "react";
 import styles from "./Hero.module.scss";
 import { Container } from "../Container/Container";
 import { ReactComponent as SearchSvg } from "../../Images/Icons/search.svg";
 
-const Hero = ({ onSearch }) => { 
+const Hero = ({ onSearch }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleSearchClick = () => {
     if (inputValue.trim()) {
-      onSearch(inputValue); 
-      setInputValue(""); 
+      onSearch(inputValue);
+      setInputValue("");
     }
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') handleSearchClick();
+    if (e.key === "Enter") handleSearchClick();
   };
 
   const today = new Date();
@@ -63,30 +63,28 @@ const Hero = ({ onSearch }) => {
 
             <div className={styles["hero__separator"]}></div>
 
-            <div
-              className={`${styles["hero__text-block"]}`}
-            >
+            <div className={`${styles["hero__text-block"]}`}>
               <p>{monthYear}</p>
               <p>{fullDayString}</p>
             </div>
           </div>
 
-         <div className={styles['hero__search']}>
-          <input 
-            type="text" 
-            placeholder="Search location..." 
-            className={styles['hero__search-input']}
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-          <button 
-            className={styles['hero__search-btn']} 
-            onClick={handleSearchClick}
-          >
-            <SearchSvg/>
-          </button>
-      </div>
+          <div className={styles["hero__search"]}>
+            <input
+              type="text"
+              placeholder="Search location..."
+              className={styles["hero__search-input"]}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+            <button
+              className={styles["hero__search-btn"]}
+              onClick={handleSearchClick}
+            >
+              <SearchSvg className={styles["hero__search-icon"]} />
+            </button>
+          </div>
         </div>
       </Container>
     </div>
