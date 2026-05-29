@@ -40,7 +40,7 @@ const News = () => {
   };
 
   return (
-    <section className={styles["news"]}>
+    <section className={styles["news"]} id="news-secion">
       <Container>
         <h1 className={styles["news__title"]}>Relevant news</h1>
         <div className={styles["news__grid"]}>

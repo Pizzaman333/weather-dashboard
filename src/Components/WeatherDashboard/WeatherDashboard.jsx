@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import axios from "axios";
 import styles from "./WeatherDashboard.module.scss";
 import { Container } from "../Container/Container";
@@ -9,7 +9,12 @@ import DailyForecast from "../DailyForecast/DailyForecast";
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
-const WeatherDashboard = ({ cities, onRemoveCity }) => {
+const WeatherDashboard = ({
+  cities,
+  onRemoveCity,
+  onShowFavorites,
+  isLoggedIn,
+}) => {
   const [weatherData, setWeatherData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -23,6 +28,41 @@ const WeatherDashboard = ({ cities, onRemoveCity }) => {
   const [currentDailyData, setCurrentDailyData] = useState([]);
 
   const detailsSectionRef = useRef(null);
+
+  const fetchWeatherForList = useCallback(async (cityList) => {
+    if (!cityList || cityList.length === 0) {
+      setWeatherData([]);
+      return;
+    }
+
+    setLoading(true);
+
+    const promises = cityList.map((city) =>
+      axios
+        .get(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
+        )
+        .catch((err) => null)
+    );
+
+    try {
+      const results = await Promise.all(promises);
+      const validResults = results
+        .filter((res) => res && res.status === 200)
+        .map((res) => res.data);
+
+      setWeatherData(validResults);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  // Simple Effect: Whenever 'cities' prop changes (from App.js), fetch data.
+  useEffect(() => {
+    fetchWeatherForList(cities);
+  }, [cities, fetchWeatherForList]);
 
   const handleShowDaily = async (cityName) => {
     setIsForecastLoading(true);
@@ -155,8 +195,22 @@ const WeatherDashboard = ({ cities, onRemoveCity }) => {
     );
 
   return (
-    <div className={styles["weather-dashboard"]}>
+    <div className={styles["weather-dashboard"]} id="weather-section">
       <Container>
+        <div className={styles["weather-dashboard__controls"]}>
+          <button
+            className={styles["weather-dashboard__fav-btn"]}
+            onClick={onShowFavorites}
+            disabled={!isLoggedIn}
+            title={
+              !isLoggedIn
+                ? "Log in to see favorites"
+                : "Load my favorite cities"
+            }
+          >
+            ★ Display Favorites
+          </button>
+        </div>
         <div className={styles["weather-dashboard__container"]}>
           {weatherData.map((data, index) => (
             <WeatherCard

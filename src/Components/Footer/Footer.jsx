@@ -5,7 +5,7 @@ import { Container } from "../Container/Container";
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} id="footer-section">
       <Container>
           <div className={styles["footer__content"]}>
             <LogoSvg className={styles["footer__logo"]} />

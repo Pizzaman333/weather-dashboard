@@ -5,13 +5,13 @@ import Hero from "./Components/Hero/Hero";
 import News from "./Components/News/News";
 import Slider from "./Components/Slider/Slider";
 import Footer from "./Components/Footer/Footer";
-// import DailyForecast from "./Components/DailyForecast/DailyForecast";
-// import WeatherDetails from "./Components/WeatherDetails/WeatherDetails";
-// import HourlyForecast from "./Components/HourlyForecast/HourlyForecast";
+import { useAuth } from "./context/AuthContext";
 
 const DEFAULT_CITIES = ["Prague", "London", "Berlin"];
 
 function App() {
+  const { currentUser, userData } = useAuth();
+
   const [cities, setCities] = useState(() => {
     const savedCities = localStorage.getItem("weather_cities");
     return savedCities ? JSON.parse(savedCities) : DEFAULT_CITIES;
@@ -31,63 +31,28 @@ function App() {
 
   const handleRemoveCity = (cityToRemove) => {
     setCities((prevCities) =>
-      prevCities.filter((city) => city !== cityToRemove)
+      prevCities.filter((city) => city.toLowerCase() !== cityToRemove.toLowerCase())
     );
   };
-//   const detailedData = {
-//   feels_like: 29.2,
-//   min_temp: 27.9,
-//   max_temp: 27.9,
-//   humidity: 59,
-//   pressure: 1007,
-//   wind_speed: 3.17,
-//   visibility: 10000 
-// };
 
-// const forecastData = [
-//   { time: "11 pm", temp: 14 },
-//   { time: "Oct 14", temp: 13 }, 
-//   { time: "1 am", temp: 12 },
-//   { time: "2 am", temp: 11 },
-//   { time: "3 am", temp: 10.5 },
-//   { time: "4 am", temp: 10.8 },
-//   { time: "5 am", temp: 11.5 },
-//   { time: "6 am", temp: 12.2 },
-//   { time: "7 am", temp: 13 },
-//   { time: "8 am", temp: 13.8 },
-//   { time: "9 am", temp: 15 },
-//   { time: "10 am", temp: 16.5 },
-//   { time: "11 am", temp: 17.8 },
-//   { time: "12 am", temp: 18.5 },
-//   { time: "1 pm", temp: 19.5 },
-//   { time: "2 pm", temp: 21 },
-//   { time: "3 pm", temp: 23 },
-//   { time: "4 pm", temp: 24.5 },
-//   { time: "5 pm", temp: 25.2 },
-//   { time: "6 pm", temp: 25.5 },
-// ];
-
-// const dailyData = [
-//   { date: "Fri, Oct 13", type: "rain", high: 23, low: 14, description: "light rain" },
-//   { date: "Sat, Oct 14", type: "rain", high: 22, low: 10, description: "light rain" },
-//   { date: "Sun, Oct 15", type: "mist", high: 13, low: 6, description: "light rain" },
-//   { date: "Mon, Oct 16", type: "clouds", high: 12, low: 4, description: "few clouds" },
-//   { date: "Tue, Oct 17", type: "overcast", high: 12, low: 4, description: "overcast clouds" },
-//   { date: "Wed, Oct 18", type: "sun", high: 13, low: 3, description: "clear sky" },
-//   { date: "Thu, Oct 19", type: "thunder", high: 12, low: 5, description: "overcast clouds" },
-//   { date: "Fri, Oct 20", type: "snow", high: 9, low: 3, description: "scattered clouds" },
-// ];
-
-
+  const handleShowFavorites = () => {
+    if (userData?.likedCities && userData.likedCities.length > 0) {
+      setCities(userData.likedCities);
+    } else {
+      alert("No favorites found or not logged in!");
+    }
+  };
 
   return (
     <div>
       <Header />
       <Hero onSearch={handleAddCity} />
-      <WeatherDashboard cities={cities} onRemoveCity={handleRemoveCity} />
-{/* <WeatherDetails weatherData={detailedData} />
-<HourlyForecast data={forecastData} /> */}
- {/* <DailyForecast forecast={dailyData} /> */}
+     <WeatherDashboard 
+        cities={cities} 
+        onRemoveCity={handleRemoveCity} 
+        onShowFavorites={handleShowFavorites}
+        isLoggedIn={!!currentUser}
+      />
       <News />
       <Slider />
       <Footer />

@@ -5,16 +5,22 @@ import { ReactComponent as LogoSvg } from "../../Images/Icons/logo.svg";
 import { ReactComponent as AccountSvg } from "../../Images/Icons/account.svg";
 import { ReactComponent as ArrowSvg } from "../../Images/Icons/arrow-down.svg";
 import AuthModal from "../AuthModal/AuthModal";
+import { useAuth } from "../../context/AuthContext";
+import AccountModal from "../AccountModal/AccountModal";
 
 const Header = () => {
+  const { currentUser, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [isAuthOpen, setIsAuthOpen] = useState(false);
 
+  const [isAccountOpen, setIsAccountOpen] = useState(false);
+
   const navItems = [
-    { name: "Who we are", href: "#" },
-    { name: "Contacts", href: "#" },
-    { name: "Menu", href: "#" },
+    { name: "Weather dashboard", href: "#weather-section" },
+    { name: "Contacts", href: "#footer-section" },
+    { name: "Explore news", href: "#news-secion" },
+    { name: "Explore images", href: "#slider-secion" }
   ];
 
   const toggleMenu = () => {
@@ -28,6 +34,14 @@ const Header = () => {
 
   const closeAuthModal = () => {
     setIsAuthOpen(false);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error("Failed to log out", error);
+    }
   };
 
   return (
@@ -56,17 +70,39 @@ const Header = () => {
             </nav>
 
             <div className={styles["header__desktop-right"]}>
-              <button
-                type="button"
-                className={styles["header__signup-btn"]}
-                onClick={openAuthModal}
-              >
-                Sign Up
-              </button>
-              <div className={styles["header__profile"]}>
-                <AccountSvg className={styles["header__profile-icon"]} />
-              </div>
-            </div>
+              {currentUser ? (
+               <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                 <span style={{ fontWeight: 500 }}>
+                   Hi, {currentUser.displayName || currentUser.email}
+                 </span>
+                 <button 
+                   onClick={handleLogout} 
+                   className={styles['header__signup-btn']}
+                   style={{ background: '#e0e0e0' }} 
+                 >
+                   Log Out
+                 </button>
+               </div>
+             ) : (
+               <button 
+               type="button"
+                  className={styles['header__signup-btn']}
+                  onClick={() => setIsAuthOpen(true)} 
+               >
+                 Sign Up
+               </button>
+             )}
+
+            <button 
+            type="button"
+                 className={styles['header__profile']} 
+                 onClick={() => setIsAccountOpen(true)}
+                 disabled={!currentUser} 
+               >
+                  <AccountSvg className={styles['header__profile-icon']} />
+               </button>
+
+           </div>
 
             <button
               className={styles["header__mobile-toggle"]}
@@ -103,19 +139,34 @@ const Header = () => {
                 </nav>
 
                 <div className={styles["header__mobile-actions"]}>
-                  <div className={styles["header__mobile-profile"]}>
+                  <div className={styles["header__mobile-profile"]} onClick={() => setIsAccountOpen(true)} type="button" disabled={!currentUser} >
                     <AccountSvg
                       className={styles["header__mobile-profile-icon"]}
                     />
                   </div>
 
-                  <button
-                    type="button"
-                    className={styles["header__mobile-signup-btn"]}
-                    onClick={openAuthModal}
-                  >
-                    Sign Up
-                  </button>
+{currentUser ? (
+               <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                 <span style={{ fontWeight: 500 }}>
+                   Hi, {currentUser.displayName || currentUser.email}
+                 </span>
+                 <button 
+                   onClick={handleLogout} 
+                  className={styles["header__mobile-signup-btn"]}
+                   style={{ background: '#e0e0e0' }} 
+                 >
+                   Log Out
+                 </button>
+               </div>
+             ) : (
+               <button 
+               type="button"
+                  className={styles["header__mobile-signup-btn"]}
+                  onClick={openAuthModal}
+               >
+                 Sign Up
+               </button>
+             )}
                 </div>
               </div>
             </Container>
@@ -124,6 +175,8 @@ const Header = () => {
       </header>
 
       {isAuthOpen && <AuthModal onClose={closeAuthModal} />}
+
+      {isAccountOpen && <AccountModal onClose={() => setIsAccountOpen(false)} />}
     </>
   );
 };

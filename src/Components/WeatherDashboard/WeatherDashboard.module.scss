@@ -28,6 +28,42 @@ $desktop: 1200px;
     }
   }
 
+  &__controls {
+    display: flex;
+    justify-content: flex-end; // Align button to the right
+    margin-bottom: 20px;
+    padding: 0 10px;
+  }
+
+  &__fav-btn {
+    background-color: #fff;
+    border: 2px solid #ffb36c;
+    color: #ffb36c;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    &:hover:not(:disabled) {
+      background-color: #ffb36c;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(255, 179, 108, 0.4);
+    }
+
+    &:disabled {
+      border-color: #ccc;
+      color: #999;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+  }
+
   &__loading {
     text-align: center;
     font-size: 18px;

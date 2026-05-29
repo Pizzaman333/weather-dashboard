@@ -1,33 +1,53 @@
 import { useState } from "react";
+import axios from "axios"; // 1. Import Axios
 import styles from "./Hero.module.scss";
 import { Container } from "../Container/Container";
 import { ReactComponent as SearchSvg } from "../../Images/Icons/search.svg";
 
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+
 const Hero = ({ onSearch }) => {
   const [inputValue, setInputValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleSearchClick = () => {
-    if (inputValue.trim()) {
-      onSearch(inputValue);
-      setInputValue("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const cityToSearch = inputValue.trim();
+
+    if (!cityToSearch) return;
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${cityToSearch}&appid=${API_KEY}`
+      );
+
+      if (response.status === 200) {
+        onSearch(response.data.name);
+        setInputValue("");
+      }
+    } catch (err) {
+      if (err.response && err.response.status === 404) {
+        setError("City not found. Please try again.");
+      } else {
+        setError("Network error. Check connection.");
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") handleSearchClick();
-  };
-
   const today = new Date();
-
   const monthYear = today.toLocaleDateString("en-US", {
     month: "long",
     year: "numeric",
   });
-
   const dayName = today.toLocaleDateString("en-US", {
     weekday: "long",
   });
-
   const getDayWithSuffix = (date) => {
     const day = date.getDate();
     if (day > 3 && day < 21) return `${day}th`;
@@ -42,7 +62,6 @@ const Hero = ({ onSearch }) => {
         return `${day}th`;
     }
   };
-
   const fullDayString = `${dayName}, ${getDayWithSuffix(today)}`;
 
   return (
@@ -60,31 +79,41 @@ const Hero = ({ onSearch }) => {
                 of the weather.
               </p>
             </div>
-
             <div className={styles["hero__separator"]}></div>
-
             <div className={`${styles["hero__text-block"]}`}>
               <p>{monthYear}</p>
               <p>{fullDayString}</p>
             </div>
           </div>
 
-          <div className={styles["hero__search"]}>
+          <form className={styles["hero__search"]} onSubmit={handleSubmit}>
             <input
               type="text"
               placeholder="Search location..."
-              className={styles["hero__search-input"]}
+              className={`${styles["hero__search-input"]} ${
+                error ? styles["hero__search-input--error"] : ""
+              }`}
               value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={handleKeyDown}
+              onChange={(e) => {
+                setInputValue(e.target.value);
+                setError(null);
+              }}
+              disabled={isLoading}
+              required
             />
             <button
+              type="submit"
               className={styles["hero__search-btn"]}
-              onClick={handleSearchClick}
+              disabled={isLoading}
             >
-              <SearchSvg className={styles["hero__search-icon"]} />
+              {isLoading ? (
+                <span className={styles["hero__loader"]}></span>
+              ) : (
+                <SearchSvg className={styles["hero__search-icon"]} />
+              )}
             </button>
-          </div>
+            {error && <div className={styles["hero__error-msg"]}>{error}</div>}
+          </form>
         </div>
       </Container>
     </div>
