@@ -150,7 +150,7 @@ const Slider = () => {
                   <img src={img.webformatURL} alt={img.tags} />
                   <div className={styles["slider__caption"]}>
                     <p>
-                      #{index} {img.tags.split(",")[0]}
+                     {img.tags.split(",")[0]}
                     </p>
                   </div>
                 </div>
@@ -172,10 +172,6 @@ const Slider = () => {
             >
               ❯
             </button>
-          </div>
-
-          <div className={styles["slider__debug"]}>
-            Showing index {activeIndex} of {images.length} loaded
           </div>
         </div>
       </Container>

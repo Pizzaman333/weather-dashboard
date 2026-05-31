@@ -4,10 +4,9 @@ import { Container } from "../Container/Container";
 
 const News = () => {
   const [articles, setArticles] = useState([]);
-  const [page, setPage] = useState(1); // Guardian pagination starts at 1
+  const [page, setPage] = useState(1); 
   const [loading, setLoading] = useState(false);
 
-  // Prevent duplicate fetches for the same page
   const loadedPages = useRef(new Set());
 
   const API_KEY = process.env.REACT_APP_NEWS_API_KEY;
@@ -19,14 +18,11 @@ const News = () => {
     const fetchNews = async () => {
       setLoading(true);
       try {
-        // q=weather matches your app context better than "dogs"
-        // show-fields=thumbnail is required to get the image
         const url = `https://content.guardianapis.com/search?q=weather&page=${page}&page-size=4&show-fields=thumbnail&api-key=${API_KEY}`;
 
         const response = await fetch(url);
         const data = await response.json();
 
-        // The Guardian structure: { response: { status: "ok", results: [...] } }
         if (data.response && data.response.status === "ok") {
           setArticles((prevArticles) => [
             ...prevArticles,
@@ -55,12 +51,10 @@ const News = () => {
         <div className={styles["news__grid"]}>
           {articles.map((article, index) => (
             <div
-              // Use ID or URL + index for unique key
               key={`${article.id}-${index}`}
               className={styles["news__card"]}
             >
               <img
-                // Guardian puts images inside "fields"
                 src={
                   article.fields?.thumbnail ||
                   "https://via.placeholder.com/300x200?text=No+Image"

@@ -19,7 +19,7 @@ const Header = () => {
   const navItems = [
     { name: "Weather dashboard", href: "#weather-section" },
     { name: "Contacts", href: "#footer-section" },
-    { name: "Explore news", href: "#news-secion" },
+    { name: "Explore news", href: "#news-section" },
     { name: "Explore images", href: "#slider-secion" }
   ];
 

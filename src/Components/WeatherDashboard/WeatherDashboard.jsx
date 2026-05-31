@@ -29,6 +29,16 @@ const WeatherDashboard = ({
 
   const detailsSectionRef = useRef(null);
 
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setActiveMode(null);
+      setActiveCityName(null);
+      setCurrentDetailedData(null);
+      setCurrentForecastData([]);
+      setCurrentDailyData([]);
+    }
+  }, [isLoggedIn]); 
+
   const fetchWeatherForList = useCallback(async (cityList) => {
     if (!cityList || cityList.length === 0) {
       setWeatherData([]);
@@ -59,7 +69,6 @@ const WeatherDashboard = ({
     }
   }, []);
 
-  // Simple Effect: Whenever 'cities' prop changes (from App.js), fetch data.
   useEffect(() => {
     fetchWeatherForList(cities);
   }, [cities, fetchWeatherForList]);
